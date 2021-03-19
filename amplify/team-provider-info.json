@@ -10,6 +10,25 @@
       "StackName": "amplify-amplifyangulargithub-dev-145543",
       "StackId": "arn:aws:cloudformation:us-east-1:285702988420:stack/amplify-amplifyangulargithub-dev-145543/b7ea9fe0-88e4-11eb-b841-12736afde7db",
       "AmplifyAppId": "d3cq0obne07kny"
+    },
+    "categories": {
+      "auth": {
+        "cognito2ee0c0b7": {}
+      },
+      "function": {
+        "amplifyangulargithubapirepocommitsfunction": {
+          "deploymentBucketName": "amplify-amplifyangulargithub-dev-145543-deployment",
+          "s3Key": "amplify-builds/amplifyangulargithubapirepocommitsfunction-32673671615172364d35-build.zip"
+        },
+        "amplifyangulargithubapifunction": {
+          "deploymentBucketName": "amplify-amplifyangulargithub-dev-145543-deployment",
+          "s3Key": "amplify-builds/amplifyangulargithubapifunction-43533852582b6a62435a-build.zip"
+        },
+        "amplifyangulargithubapiprofilefunction": {
+          "deploymentBucketName": "amplify-amplifyangulargithub-dev-145543-deployment",
+          "s3Key": "amplify-builds/amplifyangulargithubapiprofilefunction-65795246756b6c693058-build.zip"
+        }
+      }
     }
   }
 }
