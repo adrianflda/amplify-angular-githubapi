@@ -1,5 +1,6 @@
 import { Injectable, Input, Output, EventEmitter } from '@angular/core';
 import { Octokit } from '@octokit/rest';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -39,8 +40,8 @@ export class GithubApiService {
   }
 
   async listCommits(
-    repo: string | undefined = 'amplify-angular-githubapi',
-    owner: string | undefined = 'adrianflda'
+    repo: string | undefined = environment.repo,
+    owner: string | undefined = environment.username
   ): Promise<any> {
     try {
       const { data } = await this.octokitMiddleware(
@@ -60,37 +61,45 @@ export class GithubApiService {
     }
   }
 
-  async searchUsers(login: string): Promise<any> {
-    try {
-      const queryString = `${login} in:login type:user`;
-      return this.octokitMiddleware(
-        ['request'],
-        [
-          'GET /search/users',
-          {
-            q: queryString,
-          },
-        ]
-      );
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
+  async searchUsers(login: string = environment.username): Promise<any> {
+    const queryString = `${login} in:login type:user`;
+    return this.octokitMiddleware(
+      ['request'],
+      [
+        'GET /search/users',
+        {
+          q: queryString,
+        },
+      ]
+    );
   }
 
-  async getUser(username: string | undefined = 'adrianflda'): Promise<any> {
-    try {
-      return this.octokitMiddleware(
-        ['request'],
-        [
-          `GET /users/${username}`,
-          {
-            username,
-          },
-        ]
-      );
-    } catch (error) {
-      console.log(error);
-    }
+  async getUser(
+    username: string | undefined = environment.username
+  ): Promise<any> {
+    return this.octokitMiddleware(
+      ['request'],
+      [
+        `GET /users/${username}`,
+        {
+          username,
+        },
+      ]
+    );
+  }
+
+  async getRepo(
+    repo: string | undefined = environment.repo,
+    owner: string | undefined = environment.username
+  ) {
+    return this.octokitMiddleware(
+      ['repos', 'get'],
+      [
+        {
+          owner,
+          repo,
+        },
+      ]
+    );
   }
 }
