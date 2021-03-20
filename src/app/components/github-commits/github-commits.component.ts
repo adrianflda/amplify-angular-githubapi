@@ -11,7 +11,7 @@ import { Commit } from '../../models/commit.model';
 })
 export class GithubCommitsComponent implements AfterViewInit {
   displayedColumns: string[] = ['date', 'author', 'message', 'url'];
-  dataSource = new MatTableDataSource<Commit>([]);
+  dataSource: MatTableDataSource<Commit> = new MatTableDataSource<Commit>([]);
 
   constructor(private githubApiService: GithubApiService) {}
 
@@ -25,8 +25,10 @@ export class GithubCommitsComponent implements AfterViewInit {
       commits = commits.map((c: any) => Commit.convert(c));
     } catch (error) {
       console.log(error);
+      alert(error)
     }
     this.dataSource = new MatTableDataSource<Commit>(commits);
     this.dataSource.paginator = this.paginator;
   }
+
 }

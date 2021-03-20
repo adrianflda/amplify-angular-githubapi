@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { GithubCommitsComponent } from './components/github-commits/github-commi
 import { GithubProfileComponent } from './components/github-profile/github-profile.component';
 import { GithubApiComponent } from './components/github-api/github-api.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     GithubProfileComponent,
     GithubApiComponent,
     ToolbarComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     MatFormFieldModule,
     FormsModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

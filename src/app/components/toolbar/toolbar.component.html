@@ -1,15 +1,15 @@
 <nav mat-tab-nav-bar>
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" >
     <span>Github Api Test</span>
     <span class="example-spacer"></span>
     <a
       mat-tab-link
       *ngFor="let link of links; index as i"
       [href]="link"
-      (click)="activeLink = link"
+      (click)="selection(link)"
       [active]="activeLink == link"
     >
       {{ titles[i] }}
     </a>
-  </mat-toolbar>
+  </mat-toolbar >
 </nav>

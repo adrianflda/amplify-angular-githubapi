@@ -1,7 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input, Output, EventEmitter } from '@angular/core';
 import { Octokit } from '@octokit/rest';
-
-interface Search {}
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +7,35 @@ interface Search {}
 export class GithubApiService {
   public octokit = new Octokit();
 
+  @Output() loadingChange: EventEmitter<Boolean> = new EventEmitter<Boolean>();
+
   constructor() {
     console.log('Api github services');
+  }
+
+  parseFeatures(source: any, features: string[]) {
+    let functionResult = source;
+    features.map((f: string) => (functionResult = functionResult[f]));
+    return functionResult;
+    if (features.length === 1) return source[features[0]];
+    else return source[features[0]][features[1]];
+  }
+
+  async octokitMiddleware(features: string[], params: any): Promise<any> {
+    try {
+      this.loadingChange.emit(new Boolean(true));
+      const response = await this.parseFeatures(
+        this.octokit,
+        features
+      )(...params);
+      return response;
+    } catch (error) {
+      console.log(error);
+      alert(error);
+      return null;
+    } finally {
+      this.loadingChange.emit(new Boolean(false));
+    }
   }
 
   async listCommits(
@@ -18,11 +43,16 @@ export class GithubApiService {
     owner: string | undefined = 'adrianflda'
   ): Promise<any> {
     try {
-      const { data } = await this.octokit.repos.listCommits({
-        owner,
-        repo,
-        sha: 'dev',
-      });
+      const { data } = await this.octokitMiddleware(
+        ['repos', 'listCommits'],
+        [
+          {
+            owner,
+            repo,
+            sha: 'dev',
+          },
+        ]
+      );
       return data;
     } catch (error) {
       console.log(error);
@@ -33,9 +63,15 @@ export class GithubApiService {
   async searchUsers(login: string): Promise<any> {
     try {
       const queryString = `${login} in:login type:user`;
-      return this.octokit.request('GET /search/users', {
-        q: queryString,
-      });
+      return this.octokitMiddleware(
+        ['request'],
+        [
+          'GET /search/users',
+          {
+            q: queryString,
+          },
+        ]
+      );
     } catch (error) {
       console.log(error);
       return null;
@@ -44,11 +80,17 @@ export class GithubApiService {
 
   async getUser(username: string | undefined = 'adrianflda'): Promise<any> {
     try {
-      return this.octokit.request(`GET /users/${username}`, {
-        username
-      })
+      return this.octokitMiddleware(
+        ['request'],
+        [
+          `GET /users/${username}`,
+          {
+            username,
+          },
+        ]
+      );
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 }

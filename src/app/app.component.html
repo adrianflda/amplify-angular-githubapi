@@ -1,2 +1,11 @@
-<app-toolbar></app-toolbar>
-<router-outlet></router-outlet>
+<app-toolbar (loadingChange)="updateLoading($event)"></app-toolbar>
+
+<ng-container *ngIf="loading; then loader; else router"> </ng-container>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<ng-template #router>
+  <router-outlet></router-outlet>
+</ng-template>
