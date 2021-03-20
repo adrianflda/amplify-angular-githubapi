@@ -7,11 +7,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
 import { GithubCommitsComponent } from './github-commits/github-commits.component';
 import { GithubProfileComponent } from './github-profile/github-profile.component';
 import { GithubApiComponent } from './github-api/github-api.component';
@@ -20,7 +21,6 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     GithubCommitsComponent,
     GithubProfileComponent,
     GithubApiComponent,
@@ -36,6 +36,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
