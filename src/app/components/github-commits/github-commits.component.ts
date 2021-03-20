@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { GithubApiService } from '../services/github-api.service';
-import { Commit } from '../models/commit.model';
+import { GithubApiService } from '../../services/github-api.service';
+import { Commit } from '../../models/commit.model';
 
 @Component({
   selector: 'app-github-commits',

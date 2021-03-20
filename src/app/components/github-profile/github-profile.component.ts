@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GithubApiService } from '../services/github-api.service';
-import { User } from '../models/user.model';
+import { GithubApiService } from '../../services/github-api.service';
+import { User } from '../../models/user.model';
 @Component({
   selector: 'app-github-profile',
   templateUrl: './github-profile.component.html',
