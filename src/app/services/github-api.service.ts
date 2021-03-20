@@ -42,7 +42,7 @@ export class GithubApiService {
     }
   }
 
-  async getUser(username: string): Promise<any> {
+  async getUser(username: string | undefined = 'adrianflda'): Promise<any> {
     try {
       return this.octokit.request(`GET /users/${username}`, {
         username
