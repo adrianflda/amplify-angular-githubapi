@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,10 +15,6 @@ import { GithubCommitsComponent } from './github-commits/github-commits.componen
 import { GithubProfileComponent } from './github-profile/github-profile.component';
 import { GithubApiComponent } from './github-api/github-api.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-
-import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     GithubApiComponent,
     ToolbarComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatIconModule, MatToolbarModule, MatDividerModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatDividerModule,
+    MatTableModule,
+    MatPaginatorModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
